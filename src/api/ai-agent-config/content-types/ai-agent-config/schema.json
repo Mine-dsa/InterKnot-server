@@ -1,0 +1,47 @@
+{
+  "kind": "singleType",
+  "collectionName": "ai_agent_configs",
+  "info": {
+    "singularName": "ai-agent-config",
+    "pluralName": "ai-agent-configs",
+    "displayName": "AI全局配置",
+    "description": "LLM 默认参数与全站熔断"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "globalEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "provider": {
+      "type": "string",
+      "default": "openai"
+    },
+    "defaultModel": {
+      "type": "string",
+      "default": "gpt-4o-mini"
+    },
+    "defaultTemperature": {
+      "type": "decimal",
+      "default": 0.7
+    },
+    "defaultMaxTokens": {
+      "type": "integer",
+      "default": 800
+    },
+    "safetyAppend": {
+      "type": "text"
+    },
+    "dailyRepliesPerUser": {
+      "type": "integer",
+      "default": 50
+    },
+    "dailyTokenBudget": {
+      "type": "integer",
+      "default": 500000
+    }
+  }
+}

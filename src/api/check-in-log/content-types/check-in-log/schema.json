@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "check_in_logs",
+  "info": {
+    "singularName": "check-in-log",
+    "pluralName": "check-in-logs",
+    "displayName": "签到记录",
+    "description": "Log of user check-ins for ranking and auditing"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "checkInDay": {
+      "type": "date",
+      "required": true
+    },
+    "rank": {
+      "type": "integer",
+      "min": 1
+    }
+  }
+}

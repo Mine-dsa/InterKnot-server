@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "私信消息",
+    "description": "DM 消息体。承载文本 / 图片 / 系统消息，软删 deletedAt 表示撤回。"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "conversation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::conversation.conversation",
+      "inversedBy": "messages"
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "content": {
+      "type": "text",
+      "maxLength": 4000
+    },
+    "kind": {
+      "type": "enumeration",
+      "enum": ["text", "image", "system"],
+      "default": "text",
+      "required": true
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "replyTo": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::message.message"
+    },
+    "editedAt": {
+      "type": "datetime"
+    },
+    "deletedAt": {
+      "type": "datetime"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_reads",
+  "info": {
+    "singularName": "article-read",
+    "pluralName": "article-reads",
+    "displayName": "阅读记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "article_reads"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "article_reads"
+    },
+    "isRead": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

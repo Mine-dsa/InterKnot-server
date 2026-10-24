@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "title_grants",
+  "info": {
+    "singularName": "title-grant",
+    "pluralName": "title-grants",
+    "displayName": "称号授予记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "title": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::title.title"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["manual", "auto"],
+      "default": "manual",
+      "required": true
+    },
+    "grantedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "revokedAt": {
+      "type": "datetime"
+    },
+    "revokedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "revokeReason": {
+      "type": "string",
+      "maxLength": 200
+    }
+  }
+}

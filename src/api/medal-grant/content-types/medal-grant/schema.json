@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medal_grants",
+  "info": {
+    "singularName": "medal-grant",
+    "pluralName": "medal-grants",
+    "displayName": "勋章授予记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "medal": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::medal.medal"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["manual", "auto"],
+      "default": "manual",
+      "required": true
+    },
+    "grantedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "revokedAt": {
+      "type": "datetime"
+    },
+    "revokedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "revokeReason": {
+      "type": "string",
+      "maxLength": 200
+    }
+  }
+}

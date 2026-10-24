@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "experience_logs",
+  "info": {
+    "singularName": "experience-log",
+    "pluralName": "experience-logs",
+    "displayName": "经验日志",
+    "description": "Log of user experience changes"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "experience_logs"
+    },
+    "action": {
+      "type": "string",
+      "required": true
+    },
+    "exp": {
+      "type": "integer",
+      "required": true
+    },
+    "related_type": {
+      "type": "string"
+    },
+    "related_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

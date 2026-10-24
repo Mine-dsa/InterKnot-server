@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "denny_givens",
+  "info": {
+    "singularName": "denny-given",
+    "pluralName": "denny-givens",
+    "displayName": "丁尼投币",
+    "description": "用户给帖子投币记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "denny_givens"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "denny_received"
+    },
+    "amount": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 1,
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 100
+    }
+  }
+}

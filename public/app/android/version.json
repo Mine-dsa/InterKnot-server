@@ -1,0 +1,10 @@
+{
+  "version": "0.5.0",
+  "versionCode": 1,
+  "downloadUrl": "http://image.tiwat.cn/app/interknot_0.5.0.apk",
+  "updateLog": "1. 新增个人主页，可在帖子页面点击用户名进入\n2. 优化了图片上传速度\n3. 修改了签到获取经验的规则\n4. 调整了UI\n5. 新增草稿功能\n6. 优化了安卓端包体大小",
+  "forceUpdate": false,
+  "minSupportVersion": "1.0.0",
+  "fileSize": "26.62 MB",
+  "publishTime": "2026-03-12 00:00:00"
+}

@@ -1,0 +1,2 @@
+import{aO as u,aP as s,aQ as r,aR as d,aS as h,aT as c}from"./Bkws1b7j.js";function t(n){const e=n||r();return e.ssrContext?.head||e.runWithContext(()=>{if(d()){const a=h(c);if(!a)throw new Error("[nuxt] [unhead] Missing Unhead instance.");return a}})}function i(n,e={}){const a=e.head||t(e.nuxt);return s(n,{head:a,...e})}function x(n,e={}){const a=e.head||t(e.nuxt);return u(n,{head:a,...e})}export{i as a,x as u};
+//# sourceMappingURL=i4o4AQTZ.js.map

@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conversations",
+  "info": {
+    "singularName": "conversation",
+    "pluralName": "conversations",
+    "displayName": "会话",
+    "description": "私聊 / 群聊会话；kind=direct 时为两人私聊，kind=group 为群聊。"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "kind": {
+      "type": "enumeration",
+      "enum": ["direct", "group"],
+      "required": true,
+      "default": "direct"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "lastMessageAt": {
+      "type": "datetime"
+    },
+    "lastMessage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::message.message"
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::conversation-member.conversation-member",
+      "mappedBy": "conversation"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "conversation"
+    }
+  }
+}

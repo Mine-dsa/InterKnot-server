@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号激活</title>
+    <style>
+        body {
+            font-family: 'ZhCn', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #0A0A0A;
+            color: #E0E0E0;
+        }
+        .card {
+            background: #1A1A1A;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #333333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: all 0.3s ease;
+        }
+        h1 {
+            color: #D7FF00;
+            margin-top: 0;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #E0E0E0;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 40px;
+            background: #D7FF00;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s, opacity 0.2s;
+            outline: none;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        /* 状态样式 */
+        .hidden {
+            display: none;
+        }
+        .error-text {
+            color: #ff4d4f !important;
+        }
+        .success-text {
+            color: #D7FF00 !important;
+        }
+        /* Loading 动画 */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000000;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* 禁用按钮样式 */
+        .btn:disabled {
+            background: #555;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 步骤 1: 确认激活 -->
+        <div id="step-confirm">
+            <h1>绳网账号激活</h1>
+            <p>请点击下方按钮完成身份验证<br>以激活您的绳网通行证</p>
+            <button id="activate-btn" class="btn">确认激活</button>
+        </div>
+
+        <!-- 步骤 2: 处理中 -->
+        <div id="step-loading" class="hidden">
+            <h1>正在连接...</h1>
+            <p>正在与绳网服务器建立通信</p>
+            <div class="btn" style="background: #D7FF00; cursor: wait;">
+                <span class="spinner"></span>
+            </div>
+        </div>
+
+        <!-- 步骤 3: 成功 -->
+        <div id="step-success" class="hidden">
+            <h1>已登记绳网账号</h1>
+            <p>您的账号已成功激活<br>返回绳网将自动登录</p>
+        </div>
+
+        <!-- 步骤 4: 失败 -->
+        <div id="step-error" class="hidden">
+            <h1 class="error-text">激活失败</h1>
+            <p id="error-msg">链接无效或已过期</p>
+            <button onclick="location.reload()" class="btn" style="background: #333; color: #fff; border: 1px solid #555;">重试</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('confirmation');
+            const btn = document.getElementById('activate-btn');
+            
+            // 如果没有 code，直接显示错误
+            if (!code) {
+                showError('激活链接无效，缺少验证代码');
+                return;
+            }
+
+            btn.addEventListener('click', async () => {
+                showStep('step-loading');
+                try {
+                    // 发起真正的激活请求
+                    const res = await fetch(`/api/auth/email-confirmation?confirmation=${code}`);
+                    
+                    // Strapi 成功通常会重定向或返回 200
+                    if (res.ok || res.status === 302) {
+                        showStep('step-success');
+                    } else {
+                        // 尝试解析错误信息
+                        const data = await res.json().catch(() => ({}));
+                        const msg = data.error?.message || '激活请求被拒绝，请检查链接是否过期';
+                        showError(msg);
+                    }
+                } catch (err) {
+                    showError('网络连接失败，请检查您的网络设置');
+                    console.error(err);
+                }
+            });
+        });
+
+        function showStep(id) {
+            // 隐藏所有步骤
+            ['step-confirm', 'step-loading', 'step-success', 'step-error'].forEach(step => {
+                document.getElementById(step).classList.add('hidden');
+            });
+            // 显示目标步骤
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function showError(msg) {
+            document.getElementById('error-msg').innerText = msg;
+            showStep('step-error');
+        }
+    </script>
+</body>
+</html>

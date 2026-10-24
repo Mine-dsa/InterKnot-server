@@ -1,0 +1,124 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "帖子",
+    "description": "Create your blog content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true
+    },
+    "text": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 10240
+    },
+    "editorState": {
+      "type": "json"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider"
+      ]
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "article"
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::favorite.favorite",
+      "mappedBy": "article"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::like.like",
+      "mappedBy": "article"
+    },
+    "commentscount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "likescount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "views": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "article_reads": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-read.article-read",
+      "mappedBy": "article"
+    },
+    "isAnonymous": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAnnouncement": {
+      "type": "boolean",
+      "default": false
+    },
+    "anonymousSeed": {
+      "type": "string",
+      "private": true
+    },
+    "bumpedAt": {
+      "type": "datetime"
+    },
+    "denny_received": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::denny-given.denny-given",
+      "mappedBy": "article"
+    },
+    "denny_count": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

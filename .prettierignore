@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.cache/
+.tmp/
+public/
+types/generated/
+package-lock.json
+agent-worker/package-lock.json

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "denny_logs",
+  "info": {
+    "singularName": "denny-log",
+    "pluralName": "denny-logs",
+    "displayName": "丁尼日志",
+    "description": "丁尼(Denny)货币变动日志"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "denny_logs"
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "daily_login",
+        "level_up",
+        "give_post",
+        "receive_post_give",
+        "spend_rename",
+        "spend_avatar",
+        "spend_delete_post",
+        "refund",
+        "admin_grant",
+        "exam_passed"
+      ],
+      "required": true
+    },
+    "amount": {
+      "type": "integer",
+      "required": true
+    },
+    "balance": {
+      "type": "integer",
+      "required": true
+    },
+    "related_type": {
+      "type": "string"
+    },
+    "related_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

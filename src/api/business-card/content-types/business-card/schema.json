@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "business_cards",
+  "info": {
+    "singularName": "business-card",
+    "pluralName": "business-cards",
+    "displayName": "论坛名片"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "story": {
+      "type": "blocks"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["character", "city", "news"],
+      "default": "character",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

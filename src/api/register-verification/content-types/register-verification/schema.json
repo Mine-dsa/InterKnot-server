@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "register_verifications",
+  "info": {
+    "singularName": "register-verification",
+    "pluralName": "register-verifications",
+    "displayName": "注册验证"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "codeHash": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "purpose": {
+      "type": "enumeration",
+      "enum": [
+        "register",
+        "reset-password"
+      ],
+      "default": "register",
+      "required": true
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "sentAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "consumedAt": {
+      "type": "datetime"
+    },
+    "attempts": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "requestIp": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

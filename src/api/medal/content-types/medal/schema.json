@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medals",
+  "info": {
+    "singularName": "medal",
+    "pluralName": "medals",
+    "displayName": "勋章"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 32
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "rarity": {
+      "type": "enumeration",
+      "enum": ["common", "rare", "epic", "legendary", "special"],
+      "default": "common"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "condition": {
+      "type": "json"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

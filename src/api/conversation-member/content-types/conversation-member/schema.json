@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conversation_members",
+  "info": {
+    "singularName": "conversation-member",
+    "pluralName": "conversation-members",
+    "displayName": "会话成员",
+    "description": "会话成员中间表：承载 lastReadAt / muted / pinned / role / leftAt 等会话内个性化状态。"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "conversation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::conversation.conversation",
+      "inversedBy": "members"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": ["owner", "admin", "member"],
+      "default": "member",
+      "required": true
+    },
+    "lastReadAt": {
+      "type": "datetime"
+    },
+    "muted": {
+      "type": "boolean",
+      "default": false
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "leftAt": {
+      "type": "datetime"
+    }
+  }
+}

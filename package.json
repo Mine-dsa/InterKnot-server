@@ -1,0 +1,74 @@
+{
+  "name": "inter-knot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "seed:example": "node ./scripts/seed.js",
+    "migrate:api-uploads": "node ./scripts/migrate-api-uploads.js",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.47.0",
+    "@strapi/plugin-users-permissions": "5.47.0",
+    "@strapi/provider-email-nodemailer": "^5.35.0",
+    "@strapi/provider-upload-aws-s3": "^5.34.0",
+    "@strapi/strapi": "5.47.0",
+    "@strapi/utils": "^5.38.0",
+    "@types/ws": "^8.18.1",
+    "axios": "^1.13.5",
+    "better-sqlite3": "^12.11.1",
+    "file-type": "^21.3.4",
+    "fs-extra": "^10.0.0",
+    "ioredis": "^5.10.1",
+    "mime-types": "^2.1.27",
+    "mysql2": "3.9.8",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "strapi-cache": "^1.7.0",
+    "strapi-plugin-meilisearch": "^0.16.3",
+    "styled-components": "^6.0.0",
+    "ws": "^8.20.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^9.1.2",
+    "prettier": "^3.8.3",
+    "typescript": "^5",
+    "typescript-eslint": "^8.60.1",
+    "vitest": "^4.1.8"
+  },
+  "overrides": {
+    "lodash": "^4.18.1",
+    "qs": "^6.15.2",
+    "fast-xml-parser": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=24.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "3d713fa9-320f-47bd-a591-b9c5fefbc203",
+    "installId": "62de56831df9fcd532fdc57f19a8e751c3ef9e89562322b3f8f8991cb046211a"
+  }
+}

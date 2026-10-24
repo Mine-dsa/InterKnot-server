@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_attempts",
+  "info": {
+    "singularName": "exam-attempt",
+    "pluralName": "exam-attempts",
+    "displayName": "入站考试记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "questionsSnapshot": {
+      "type": "json",
+      "required": true,
+      "private": true
+    },
+    "answers": {
+      "type": "json",
+      "private": true
+    },
+    "score": {
+      "type": "integer"
+    },
+    "totalScore": {
+      "type": "integer"
+    },
+    "scorePercent": {
+      "type": "integer"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "startedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "submittedAt": {
+      "type": "datetime"
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "requestIp": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

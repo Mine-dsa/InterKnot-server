@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "举报记录"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "targetType": {
+      "type": "enumeration",
+      "enum": ["article", "comment", "user"],
+      "required": true
+    },
+    "targetId": {
+      "type": "string",
+      "required": true,
+      "maxLength": 64
+    },
+    "reason": {
+      "type": "enumeration",
+      "enum": ["spam", "abuse", "porn", "illegal", "privacy", "misinfo", "plagiarism", "other"],
+      "required": true
+    },
+    "detail": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "reporter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article"
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comment.comment"
+    },
+    "targetUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

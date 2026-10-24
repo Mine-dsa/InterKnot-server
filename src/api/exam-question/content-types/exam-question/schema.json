@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_questions",
+  "info": {
+    "singularName": "exam-question",
+    "pluralName": "exam-questions",
+    "displayName": "入站考试题目"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "question": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["single", "multiple", "boolean"],
+      "default": "single",
+      "required": true
+    },
+    "options": {
+      "type": "json",
+      "required": true
+    },
+    "correctKeys": {
+      "type": "json",
+      "required": true,
+      "private": true
+    },
+    "explanation": {
+      "type": "text",
+      "private": true
+    },
+    "weight": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "required": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "tag": {
+      "type": "string"
+    }
+  }
+}

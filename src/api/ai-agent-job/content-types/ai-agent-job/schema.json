@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ai_agent_jobs",
+  "info": {
+    "singularName": "ai-agent-job",
+    "pluralName": "ai-agent-jobs",
+    "displayName": "AI任务审计",
+    "description": "Agent 任务状态与 token 用量（可选审计）"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "jobType": {
+      "type": "enumeration",
+      "enum": ["comment", "dm", "summary", "moderation"],
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["queued", "processing", "completed", "failed", "skipped"],
+      "default": "queued"
+    },
+    "triggerId": {
+      "type": "string"
+    },
+    "roleCard": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ai-role-card.ai-role-card"
+    },
+    "errorMessage": {
+      "type": "text"
+    },
+    "promptTokens": {
+      "type": "integer"
+    },
+    "completionTokens": {
+      "type": "integer"
+    }
+  }
+}

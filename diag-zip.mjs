@@ -1,0 +1,11 @@
+import { execSync } from 'node:child_process';
+const tar = 'C:/Windows/System32/tar.exe';
+const out = execSync(`"${tar}" -tf "E:/opencode/8.5.2正式版.zip"`, { maxBuffer: 512 * 1024 * 1024 }).toString('utf8');
+const lines = out.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+console.log('total:', lines.length);
+console.log('--- first 10 ---');
+lines.slice(0, 10).forEach((l) => console.log(JSON.stringify(l.slice(0, 90))));
+console.log('--- node.exe entries ---');
+lines.filter((l) => l.endsWith('node.exe')).slice(0, 5).forEach((l) => console.log(JSON.stringify(l.slice(0, 90))));
+console.log('--- banner entries ---');
+lines.filter((l) => l.includes('banner.png')).slice(0, 3).forEach((l) => console.log(JSON.stringify(l.slice(0, 90))));

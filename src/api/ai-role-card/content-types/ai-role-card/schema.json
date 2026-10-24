@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ai_role_cards",
+  "info": {
+    "singularName": "ai-role-card",
+    "pluralName": "ai-role-cards",
+    "displayName": "AI角色卡",
+    "description": "平台 AI 聊天角色配置；绑定论坛用户账号与 prompt"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "displayName": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "displayName",
+      "required": true
+    },
+    "bio": {
+      "type": "text"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "systemPrompt": {
+      "type": "text"
+    },
+    "boundUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "knockVisible": {
+      "type": "boolean",
+      "default": true
+    },
+    "dmEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "commentEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "model": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "decimal"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0
+    },
+    "tools": {
+      "type": "json"
+    }
+  }
+}

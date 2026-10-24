@@ -1,0 +1,188 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "用户"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author",
+      "inversedBy": "user"
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::favorite.favorite",
+      "mappedBy": "user"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::like.like",
+      "mappedBy": "user"
+    },
+    "article_reads": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-read.article-read",
+      "mappedBy": "user"
+    },
+    "exp": {
+      "type": "integer",
+      "default": 0,
+      "configurable": false
+    },
+    "level": {
+      "type": "integer",
+      "default": 1,
+      "configurable": false
+    },
+    "lastCheckInDate": {
+      "type": "date",
+      "configurable": false
+    },
+    "consecutiveCheckInDays": {
+      "type": "integer",
+      "default": 0,
+      "configurable": false
+    },
+    "experience_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::experience-log.experience-log",
+      "mappedBy": "user"
+    },
+    "equippedCard": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::business-card.business-card"
+    },
+    "equippedAvatar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::avatar.avatar"
+    },
+    "equippedTitle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::title.title"
+    },
+    "equippedMedal": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::medal.medal"
+    },
+    "profileHidden": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "denny": {
+      "type": "integer",
+      "default": 30,
+      "min": 0,
+      "max": 9999,
+      "configurable": false
+    },
+    "denny_given": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "configurable": false
+    },
+    "denny_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::denny-log.denny-log",
+      "mappedBy": "user"
+    },
+    "denny_givens": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::denny-given.denny-given",
+      "mappedBy": "user"
+    },
+    "isAiAgent": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "examPassed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "examPassedAt": {
+      "type": "datetime",
+      "configurable": false
+    }
+  }
+}
